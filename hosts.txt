@@ -1,0 +1,2 @@
+localhost /home/tlibal/workspace/certcheck/example.com.pem
+localhost /home/tlibal/workspace/certcheck/expired.com.pem
