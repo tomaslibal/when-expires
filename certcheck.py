@@ -52,5 +52,5 @@ def check_certs(certs):
 
 def check_on_web(urls):
     port = 443
-    for url in urls:
-         o = run('echo | openssl s_client -connect %s.com:443 2>/dev/null | openssl x509 -noout -dates' % (url))         
+    for host in urls:
+         o = run('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -dates' % (host, host))         
