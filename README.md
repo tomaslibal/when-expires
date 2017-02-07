@@ -10,5 +10,5 @@ Specify the hosts and the certificate paths on those hosts in the `host.txt` fil
 
 ```
 host1.example.org /some/foo/cert.pem
-10.0.0.168 /bar/foo/cert.pem
+10.0.0.168 /bar/foo/cert.crt
 ```
