@@ -1,6 +1,7 @@
 import logging
 
-from fabric.api import run, env
+from fabric.api import run, env, show
+from fabric.utils import fastprint
 from datetime import datetime
 
 
@@ -34,7 +35,7 @@ def get_certs_to_check(selected_host):
     return certs
 
 def check_error(output, args):
-    print "error checking the certificate %s" % (args)
+    fastprint("error checking the certificate %s\n" % (args))
 
 def check_success(output, args):
     cert_path = args
@@ -42,9 +43,9 @@ def check_success(output, args):
     exp = datetime.strptime(exp, '%b %d %H:%M:%S %Y GMT')
     if exp > datetime.now():
         valid = (exp - datetime.now()).days
-        print "%s:%s OK (expires in %d days)" % (env.host, cert_path, valid)
+        fastprint("%s:%s OK (expires in %d days)\n" % (env.host, cert_path, valid))
     else:
-        print "%s:%s EXPIRED!" % (env.host, cert_path)
+        fastprint("%s:%s EXPIRED!\n" % (env.host, cert_path))
 
 def check_certs(certs):
     for cert_path in certs:
