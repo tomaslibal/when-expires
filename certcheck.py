@@ -14,26 +14,22 @@ def runcmd(cmd, args, on_success, on_error):
     else:
         on_error(output, args)
 
-def get_hosts():
-    hosts = []
-    path = "hosts.txt"
+def map_each_line(path, mapfn):
+    mapped = []
     with open(path, "r") as lines:
         for line in lines:
-            host, cert_path = line.split(" ")
-            hosts.append(host)
+            mapped.append(mapfn(line))
+    return mapped
 
+def get_hosts():
+    hosts = map_each_line("hosts.txt", lambda line: line.split(" ")[0])
     aux = set(hosts)
     return list(aux)
 
 def get_certs_to_check(selected_host):
-    certs = []
-    path = "hosts.txt"
-    with open(path, "r") as lines:
-        for line in lines:
-            host, cert_path = line.split(" ")
-            if host == selected_host:
-                certs.append(cert_path.rstrip('\n'))
-
+    hosts_and_certs = map_each_line("hosts.txt", lambda line: line.split(" "))
+    certs = filter(lambda (host, cert): host == selected_host, hosts_and_certs)
+    certs = map(lambda (host, cert): cert.rstrip('\n'), certs)
     return certs
 
 def check_error(output, args):
