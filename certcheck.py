@@ -22,9 +22,10 @@ def map_each_line(path, mapfn):
     return mapped
 
 def get_hosts():
-    hosts = map_each_line("hosts.txt", lambda line: line.split(" ")[0])
-    aux = set(hosts)
-    return list(aux)
+    return map_each_line("hosts.txt", lambda line: line.split(" ")[0])    
+
+def get_weblist():
+    return map_each_line("web.txt", lambda line: line)
 
 def get_certs_to_check(selected_host):
     hosts_and_certs = map_each_line("hosts.txt", lambda line: line.split(" "))
@@ -53,4 +54,4 @@ def check_certs(certs):
 def check_on_web(urls):
     port = 443
     for host in urls:
-         o = run('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -dates' % (host, host))         
+         o = run('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -dates' % (host, host))
