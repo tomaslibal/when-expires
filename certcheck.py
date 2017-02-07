@@ -52,6 +52,5 @@ def check_certs(certs):
         runcmd('openssl x509 -enddate -noout -in %s', (cert_path), check_success, check_error)        
 
 def check_on_web(urls):
-    port = 443
     for host in urls:
          runcmd('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -enddate', (host, host), check_success, check_error)
