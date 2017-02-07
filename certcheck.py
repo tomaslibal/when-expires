@@ -1,6 +1,6 @@
 import logging
 
-from fabric.api import run, env, show
+from fabric.api import run, env
 from fabric.utils import fastprint
 from datetime import datetime
 
