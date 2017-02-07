@@ -50,3 +50,8 @@ def check_certs(certs):
                 print "%s:%s OK (expires in %d days)" % (env.host, cert_path, valid)
             else:
                 print "expired!!"
+
+def check_on_web(urls):
+    port = 443
+    for url in urls:
+         o = run('echo | openssl s_client -connect %s.com:443 2>/dev/null | openssl x509 -noout -dates' % (url))         
