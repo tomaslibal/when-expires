@@ -25,7 +25,6 @@ def get_certs_to_check(selected_host):
 
 def check_certs(certs):
     for cert_path in certs:
-        # cert_path = '/etc/ssl/foo/foo.pem'
         print "checking %s" % (cert_path)
         o = run('openssl x509 -enddate -noout -in ' + cert_path)
         if not o.succeeded:
