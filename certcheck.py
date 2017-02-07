@@ -7,7 +7,7 @@ from datetime import datetime
 logging.basicConfig(filename='when-expires.log',level=logging.DEBUG)
 
 def runcmd(cmd, on_success, on_error):
-    logging.debug('Running cmd [%s] %s' % (env.host, cmd))
+    logging.debug('Running cmd [%s] %s', env.host, cmd)
     output = run(cmd)
     if output.succeeded:
         on_success(output)
