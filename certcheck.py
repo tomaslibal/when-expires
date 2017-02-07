@@ -1,6 +1,14 @@
 from fabric.api import run, env
 from datetime import datetime
 
+
+def runcmd(cmd, on_success, on_error):
+    output = run(cmd)
+    if output.succeeded:
+        on_success(output)
+    else:
+        on_error(output)
+
 def get_hosts():
     hosts = []
     path = "hosts.txt"
