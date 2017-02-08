@@ -9,7 +9,11 @@ logging.basicConfig(filename='when-expires.log',level=logging.INFO)
 
 def runcmd(cmd, args, on_success, on_error, op=run):
     logging.info('Running cmd [%s] %s', env.host, cmd)
-    output = op(cmd % args, True)
+    # The second argument is sort of a hack to force local() use capture=True
+    # when the operation "op" is local().
+    # Luckily enough, when op=run, the second argument is Shell=True which is
+    # ok to keep True as well.
+    output = op(cmd % args, True) 
     if output.succeeded:
         on_success(output, args)
     else:
