@@ -11,11 +11,9 @@ output.stdout = False
 @task
 def check_cert():
     print "checking on %s " % (env.host)
-    certs_to_check = get_certs_to_check(env.host)
-    check_certs(certs_to_check)
+    check_certs(get_certs_to_check(env.host))
 
 @task
 @hosts('localhost')
 def check_web():
-    web_certs = get_weblist()
-    check_on_web(web_certs)
+    check_on_web(get_weblist())
