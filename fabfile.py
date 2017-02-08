@@ -10,9 +10,8 @@ output.stdout = False
 
 @task
 def check_cert():
-    current_host = env.host
-    print "checking on %s " % (current_host)
-    certs_to_check = get_certs_to_check(current_host)
+    print "checking on %s " % (env.host)
+    certs_to_check = get_certs_to_check(env.host)
     check_certs(certs_to_check)
 
 @task
