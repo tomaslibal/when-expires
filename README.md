@@ -29,3 +29,20 @@ Specify the websites in the `web.txt` file, e.g.:
 example.com
 foo.example.com
 ```
+
+## Example output
+
+Website certificates
+
+```
+localhost:('secure.example.com', 'secure.example.com') OK (expires in 29 days)
+
+```
+
+Remote certificates on hosts
+
+```
+checking on example.service.corp
+example.service.corp:/etc/ssl/cert/example.pem OK (expires in 362 days)
+example.service.corp:/etc/ssl/service-foo/expired.pem EXPIRED!
+```
