@@ -1,4 +1,4 @@
-from fabric.api import run, env, hosts, task
+from fabric.api import run, env, hosts, task, runs_once
 from fabric.state import output
 from fabric.utils import fastprint
 from certcheck import get_hosts, get_certs_to_check, check_certs, get_weblist, check_on_web
@@ -15,6 +15,6 @@ def check_cert():
     check_certs(get_certs_to_check(env.host))
 
 @task
-@hosts('localhost')
+@runs_once
 def check_web():
     check_on_web(get_weblist())

@@ -1,15 +1,15 @@
 import logging
 
-from fabric.api import run, env
+from fabric.api import run, env, local
 from fabric.utils import fastprint
 from datetime import datetime
 
 
 logging.basicConfig(filename='when-expires.log',level=logging.INFO)
 
-def runcmd(cmd, args, on_success, on_error):
+def runcmd(cmd, args, on_success, on_error, op=run):
     logging.info('Running cmd [%s] %s', env.host, cmd)
-    output = run(cmd % args)
+    output = op(cmd % args, True)
     if output.succeeded:
         on_success(output, args)
     else:
@@ -54,4 +54,4 @@ def check_certs(certs):
 
 def check_on_web(urls):
     for host in urls:
-         runcmd('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -enddate', (host, host), check_success, check_error)
+        runcmd('echo | openssl s_client -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -enddate', (host, host), check_success, check_error, local)
