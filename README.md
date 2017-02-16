@@ -17,7 +17,7 @@ host1.example.org /some/foo/cert.pem
 10.0.0.168 /bar/foo/cert.crt
 ```
 
-This relies on the host having `openssl` installed.
+This relies on each host having `openssl` installed.
 
 ## Check a certificate on a website
 
