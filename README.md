@@ -1,8 +1,10 @@
 # checks `when-expires` date for your certificates
 
-Uses the Fabric library (so you'll need Python and Fabric). Can check both website certificates and certificates on a filesystem.
+Can check both website certificates (on any website) and certificates on a filesystem (to which you have access).
 
 ## Check an arbitrary certificate file on a filesystem
+
+Run the check by using the following task
 
 ```
 fab check_cert
